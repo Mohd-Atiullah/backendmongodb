@@ -8,6 +8,14 @@ import cors from 'cors';
 
 // create app first
 const app = express();
+ //app.use(cors({ origin: 'http://localhost:5173' }));
+
+ app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
+
 
 // middleware
 app.use(cors());
@@ -17,9 +25,10 @@ app.use(express.json());
 import signupRoutes from './routes/signup.routes.js';
 import loginRoutes from './routes/login.routes.js';
 
-// mount routes
+// mount routes so POST /api/signup and POST /api/login work
 app.use('/api/signup', signupRoutes);
 app.use('/api/login', loginRoutes);
+
 
 await connectDB(); // top-level await is ok in ESM; ensures DB is connected before listening
 

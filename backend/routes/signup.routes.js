@@ -1,9 +1,8 @@
-// routes/signup.routes.js
 import express from 'express';
-import { signupUser } from '../controller/signup.controller.js'; // must match named export
+import { signupUser } from '../controller/signup.controller.js';
 const router = express.Router();
 
-// mounted at /api/signup in index.js => POST /api/signup
+// index.js mounts this on /api/signup -> POST /api/signup
 router.post('/', signupUser);
 
 export default router;
